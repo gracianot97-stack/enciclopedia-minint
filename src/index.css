@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/* REGRAS PROFISSIONAIS DE IMPRESSÃO / EXPORTAÇÃO PDF */
+@media print {
+  /* Forçar fundo claro e texto escuro para legibilidade máxima e economia de tinta */
+  body, html, #root {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ocultar elementos desnecessários de navegação e controle em PDF */
+  header,
+  footer,
+  aside,
+  button,
+  input,
+  select,
+  .print\:hidden,
+  .no-print {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Remover decorações escuras, sombras e fundos pesados */
+  div, section, article, h1, h2, h3, h4, p, span, li {
+    background-color: transparent !important;
+    background: transparent !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Deixar o container principal cobrir todo o papel de forma limpa */
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: transparent !important;
+  }
+
+  section {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Quebra de página controlada para fascículos */
+  .page-break {
+    page-break-before: always !important;
+    break-before: page !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Molduras de cartões mais finas e nítidas em cinza claro */
+  .border,
+  .border-slate-800,
+  .border-slate-850,
+  .border-slate-800\/80 {
+    border: 1px solid #cbd5e1 !important;
+  }
+
+  /* Cores de status otimizadas para o papel (com bom contraste) */
+  .text-emerald-400, .text-emerald-500 {
+    color: #15803d !important;
+    font-weight: bold !important;
+  }
+
+  .text-rose-400, .text-rose-500 {
+    color: #b91c1c !important;
+    font-weight: bold !important;
+  }
+
+  .text-amber-400, .text-amber-500 {
+    color: #b45309 !important;
+    font-weight: bold !important;
+  }
+
+  .text-indigo-400, .text-indigo-500 {
+    color: #4338ca !important;
+    font-weight: bold !important;
+  }
+
+  /* Garantir que as explicações de questões apareçam bem demarcadas no papel */
+  .bg-slate-950\/60, .bg-slate-900\/60, .bg-slate-950 {
+    background-color: #f8fafc !important; /* fundo cinza bem clarinho no papel */
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+  }
+
+  /* Garantir que a revisão do simulador que tem rolagem apareça inteira no papel */
+  .max-h-\[500px\] {
+    max-h: none !important;
+    overflow: visible !important;
+  }
+
+  .overflow-y-auto {
+    overflow: visible !important;
+  }
+
+  /* Forçar que as questões fiquem numa listagem vertical limpa */
+  .space-y-4 > * {
+    break-inside: avoid !important;
+  }
+
+  /* Forçar que o cabeçalho impresso oficial fique visível */
+  .print\:block {
+    display: block !important;
+  }
+}
