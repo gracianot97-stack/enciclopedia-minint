@@ -1,0 +1,5 @@
+{
+  "name": "Enciclopédia de Preparação MININT",
+  "description": "Material de estudo completo e simulador de exames com suporte a PWA (instalável) e funcionamento offline para o concurso de ingresso do Ministério do Interior de Angola.",
+  "requestFramePermissions": []
+}

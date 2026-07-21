@@ -1,0 +1,39 @@
+[build]
+  command = "npm run build:netlify"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Todos os pedidos a /api/* são reencaminhados para a Função Netlify que
+# contém a mesma API de autenticação, sessões e administração usada no
+# resto do aplicativo.
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# Suporte a Service Worker / PWA: nunca reescrever o próprio ficheiro do
+# service worker nem o manifesto.
+[[redirects]]
+  from = "/sw.js"
+  to = "/sw.js"
+  status = 200
+
+[[redirects]]
+  from = "/manifest.json"
+  to = "/manifest.json"
+  status = 200
+
+# Aplicativo de página única (SPA): qualquer outro caminho devolve o
+# index.html para que o React Router / navegação interna funcione
+# correctamente mesmo após recarregar a página num ecrã específico.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
